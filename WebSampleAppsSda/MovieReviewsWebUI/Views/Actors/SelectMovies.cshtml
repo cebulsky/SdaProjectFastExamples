@@ -1,0 +1,46 @@
+﻿@model MovieReviewsWebUI.ViewModels.ActorMoviesViewModel
+
+@{
+    ViewBag.Title = "SelectMovies";
+}
+
+<h2>Select Actor Movies</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Title
+        </th>
+        <th>
+            Release Date
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Movies)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReleaseDate)
+            </td>
+            <td>
+                TBD
+            </td>
+        </tr>
+    }
+    
+</table>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.Actor.Id)
+    @Html.ListBoxFor(model => model.SelectedMovies, Model.MoviesToSelect, new { size = Model.MoviesToSelect.Count() })
+
+    <div>
+        <input type="submit" />
+    </div>
+}
